@@ -32,5 +32,12 @@ export class InvoiceComponent implements OnInit {
     this.invoice = this.invoiceService.getInvoice();
     console.log('Factura cargada en InvoiceComponent:', this.invoice);
   }
+
+  deleteItem(id: number): void {
+    this.invoiceService.removeItem(id);
+    this.invoice = this.invoiceService.getInvoice();
+  }
+
+  
 }
 

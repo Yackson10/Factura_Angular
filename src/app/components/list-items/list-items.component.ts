@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Item } from '../../models/item';
 import { CommonModule } from '@angular/common';
 
@@ -12,5 +12,11 @@ export class ListItemsComponent  {
 
   @Input () items: Item[] = [];
   @Input() total!: number;
+  @Output() removeItemEvent = new EventEmitter<number>();
+  
+  
+  onRemoveItem(id: number): void {
+    this.removeItemEvent.emit(id);
+  }
 
 }

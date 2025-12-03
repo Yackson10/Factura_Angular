@@ -11,7 +11,7 @@
                 <h4 class="mt-4 mb-3 text-secondary">Detalle de la Factura</h4>
             </div>
             <div>
-                <list-items [items]="invoice.items " [total]="invoice.total!"></list-items>
+                <list-items [items]="invoice.items " [total]="invoice.total!" (removeItemEvent)="deleteItem($event)" ></list-items>
             </div>
         </div>
     </div>

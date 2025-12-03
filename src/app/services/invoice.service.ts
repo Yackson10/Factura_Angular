@@ -34,4 +34,8 @@ export class InvoiceService {
   }, 0);
   }
 
+  removeItem(id: number): void {
+    this.invoice.items = this.invoice.items.filter(item => item.id !== id);
+  }
+
 }
