@@ -1,0 +1,18 @@
+<div class="container my-5">
+    <div class="card shadow" *ngIf="invoice">
+        <invoice-view [id]="invoice.id" [name]="invoice.name"></invoice-view>
+        <div class="card-body">
+            <div class="row mb-4">
+                <client-view class="col-md-6" [client]="invoice.client"></client-view>
+                
+                <company-view class="col-md-6 text-md-end" [company]="invoice.company" [name]="invoice.name"></company-view>
+            </div>
+            <div>
+                <h4 class="mt-4 mb-3 text-secondary">Detalle de la Factura</h4>
+            </div>
+            <div>
+                <list-items [items]="invoice.items " [total]="invoice.total!"></list-items>
+            </div>
+        </div>
+    </div>
+</div>
