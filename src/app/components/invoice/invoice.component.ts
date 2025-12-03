@@ -30,7 +30,6 @@ export class InvoiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.invoice = this.invoiceService.getInvoice();
-    console.log('Factura cargada en InvoiceComponent:', this.invoice);
   }
 
   deleteItem(id: number): void {
