@@ -1,0 +1,25 @@
+.icon-trash {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-hover-effect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.img-icon {
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-hover-effect:hover .img-icon {
+    transform: scale(1.25);
+}
+
+.btn-hover-effect:hover {
+    background-color: #f8f9fa;
+    z-index: 1;
+}
+

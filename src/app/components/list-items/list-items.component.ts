@@ -13,10 +13,19 @@ export class ListItemsComponent  {
   @Input () items: Item[] = [];
   @Input() total!: number;
   @Output() removeItemEvent = new EventEmitter<number>();
+  @Output() editItemEvent = new EventEmitter<Item>();
+  @Output() toggleFormEvent = new EventEmitter<void>();
+
+  onToggleForm(): void {
+    this.toggleFormEvent.emit();
+  }
   
-  
-  onRemoveItem(id: number): void {
+  onRemoveItem(id: number) {
     this.removeItemEvent.emit(id);
   }
+
+  onEdit(item: Item) {
+    this.editItemEvent.emit(item);
+}
 
 }

@@ -35,7 +35,7 @@ export const invoiceData: Invoice = {
             product: 'Producto 3',
             price: 150,
             quantity: 3
-        }
+        },
 
     ]
 } as Invoice;

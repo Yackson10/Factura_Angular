@@ -7,7 +7,6 @@ import { Item } from '../models/item';
   providedIn: 'root'
 })
 export class InvoiceService {
-
   private invoice: Invoice;
 
   constructor() {
@@ -37,5 +36,16 @@ export class InvoiceService {
   removeItem(id: number): void {
     this.invoice.items = this.invoice.items.filter(item => item.id !== id);
   }
+
+  save(item: Item): Invoice {
+    const index = this.invoice.items.findIndex(i => i.id === item.id);
+    if (index !== -1) {
+        this.invoice.items[index] = item;
+    } else {
+        this.invoice.items = [...this.invoice.items, item];
+    }
+    return this.getInvoice();
+}
+
 
 }

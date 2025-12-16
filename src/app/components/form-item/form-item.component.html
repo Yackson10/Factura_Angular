@@ -1,0 +1,83 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-white" [ngClass]="item.id > 0 ? 'bg-primary' : 'bg-dark'">
+        <h5 class="mb-0">
+            <i class="bi me-2" [ngClass]="item.id > 0 ? 'bi-pencil-square' : 'bi-cart-plus'"></i>
+            {{ item.id > 0 ? 'Editar Producto' : 'Nuevo Producto' }}
+        </h5>
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit(itemForm)" #itemForm="ngForm">
+            <div class="row g-3">
+                
+                <div class="col-md-5">
+                    <label class="form-label fw-bold">Ingrese Producto</label>
+                    <input 
+                        class="form-control" 
+                        name="product" 
+                        [(ngModel)]="item.product" 
+                        #product="ngModel" 
+                        [ngClass]="{'is-invalid': product.invalid && (product.dirty || product.touched)}"
+                        placeholder="Ingrese Producto" 
+                        required 
+                        minlength="3"
+                        pattern=".*\S.*">
+                    
+                    <div class="invalid-feedback">
+                        @if (product.errors?.['required'] || product.errors?.['pattern']) {
+                            <span>El nombre del producto es obligatorio.</span>
+                        }
+                        @if (product.errors?.['minlength']) {
+                            <span>Debe tener al menos 3 caracteres.</span>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label fw-bold">Precio</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text">$</span>
+                        <input 
+                            type="number" 
+                            class="form-control" 
+                            name="price" 
+                            [(ngModel)]="item.price" 
+                            #price="ngModel"
+                            [ngClass]="{'is-invalid': price.invalid && (price.dirty || price.touched)}"
+                            required 
+                            min="10" 
+                            step="0.01">
+                        
+                        <div class="invalid-feedback">
+                            @if (price.errors?.['required']) { <span>Obligatorio.</span> }
+                            @if (price.errors?.['min']) { <span>Min $10.</span> }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label fw-bold">Cantidad</label>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        name="quantity" 
+                        [(ngModel)]="item.quantity" 
+                        #qty="ngModel"
+                        [ngClass]="{'is-invalid': qty.invalid && (qty.dirty || qty.touched)}"
+                        required 
+                        min="1">
+                    <div class="invalid-feedback">Min 1.</div>
+                </div>
+
+                <div class="col-md-3 d-flex align-items-end gap-2" >
+                    <button type="submit" 
+                            class="btn w-100 shadow-sm" 
+                            [ngClass]="item.id > 0 ? 'btn-primary' : 'btn-success'"
+                            [disabled]="itemForm.invalid">
+                        <i class="bi me-2" [ngClass]="item.id > 0 ? 'bi-save' : 'bi-plus-circle'"></i>
+                        {{ item.id > 0 ? 'Actualizar' : 'Agregar' }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

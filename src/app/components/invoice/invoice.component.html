@@ -1,17 +1,32 @@
 <div class="container my-5">
     <div class="card shadow" *ngIf="invoice">
-        <invoice-view [id]="invoice.id" [name]="invoice.name"></invoice-view>
+        <invoice-view [id]="invoice.id" [name]="invoice.name"/>
+        
         <div class="card-body">
             <div class="row mb-4">
-                <client-view class="col-md-6" [client]="invoice.client"></client-view>
-                
-                <company-view class="col-md-6 text-md-end" [company]="invoice.company" [name]="invoice.name"></company-view>
+                <client-view class="col-md-6" [client]="invoice.client"/>
+                <company-view class="col-md-6 text-md-end" [company]="invoice.company" [name]="invoice.name"/>
             </div>
+
             <div>
-                <h4 class="mt-4 mb-3 text-secondary">Detalle de la Factura</h4>
+                <h4 class="mb-3 text-secondary">Detalle de la Factura</h4>
             </div>
+
             <div>
-                <list-items [items]="invoice.items " [total]="invoice.total!" (removeItemEvent)="deleteItem($event)" ></list-items>
+                <list-items 
+                    [items]="invoice.items " 
+                    [total]="invoice.total!" 
+                    (removeItemEvent)="deleteItem($event)"
+                    (editItemEvent)="prepareEdit($event)"
+                    (toggleFormEvent)="toggleForm()" /> 
+                    
+                    @if (visible) {
+                        <div class="mt-4">
+                            <form-item 
+                                [item]="itemSelected" 
+                                (addItemEventEmitter)="addItem($event)"/>
+                        </div>
+                    }   
             </div>
         </div>
     </div>
